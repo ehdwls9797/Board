@@ -4,9 +4,30 @@
 
 <!-- 맵퍼파일 생성 후 반드시 sql-map-config.xml 파일에 mapper 등록해줘야 함 -->
 <mapper namespace="sampleMapper">
-	<resultMap type="com.spring.biz.vo.SampleVO" id="sample">
-		<result column="SAMPLE" 	property="sample"/>
+	<resultMap type="com.spring.biz.vo.BoardVO" id="board">
+		<result column="BOARD_NUM" 			property="boardNum"/>
+		<result column="BOARD_TITLE" 		property="boardTitle"/>
+		<result column="BOARD_CONTENT" 		property="boardContent"/>
+		<result column="BOARD_WRITER" 		property="boardWriter"/>
+		<result column="BOARD_CREATE_DATE" 	property="createDate"/>
+		<result column="BOARD_READ_CNT" 	property="readCnt"/>
+		<result column="CATEGORY_NUM" 		property="categoryNum"/>
 	</resultMap>
+	
+	<resultMap type="com.spring.biz.vo.BoardCategoryVO" id="category">
+		<result column="CATEGORY_NUM" 	property="categoryNum"/>
+		<result column="CATEGORY_NAME" 	property="categoryName"/>
+	</resultMap>
+	
+	<select id="boardList" resultMap="board">
+		SELECT BOARD_NUM,
+				BOARD_TITLE,
+				BOARD_WRITER,
+				TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD') AS BOARD_CREATE_DATE,
+				BOARD_READ_CNT
+		FROM BOARD_TEST
+				
+	</select>
 	
 </mapper>
 
