@@ -15,6 +15,11 @@ public class SampleController {
 		return "sample/sample"; 
 	}
 	
+	@RequestMapping(value = "/board.do")
+	public String board() {
+		return "sample/board"; 
+	}
+	
 }
 
 
