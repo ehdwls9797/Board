@@ -20,7 +20,7 @@
 <style type="text/css">
 	ul > li{
 		font-size: 20px;
-		padding: 5px;
+		padding: 8px;
 	}
 </style>
 
@@ -31,9 +31,9 @@
 </div>
 <div style="height: 40px;"></div>
 <ul>
-	<li><a href="board.do">자유 게시판</a></li>
-	<li><a href="board.do">건의 게시판</a></li>
-	<li><a href="board.do">공지 게시판</a></li>
+	<c:forEach items="${category }" var="vo">
+	<li><a href="board.do?categoryNum=${vo.categoryNum }">${vo.categoryName}</a></li>
+	</c:forEach>
 </ul>
 
 </body>

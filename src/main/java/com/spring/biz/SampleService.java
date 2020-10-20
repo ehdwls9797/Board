@@ -2,11 +2,16 @@ package com.spring.biz;
 
 import java.util.List;
 
+import com.spring.biz.vo.BoardCategoryVO;
 import com.spring.biz.vo.BoardVO;
 
 public interface SampleService {
 	
-	List<BoardVO> boardList();
+	List<BoardCategoryVO> categoryList();
+	
+	BoardCategoryVO categoryName (int categoryNum);
+	
+	List<BoardVO> boardList(int categoryNum);
 	
 }
 

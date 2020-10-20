@@ -19,14 +19,28 @@
 		<result column="CATEGORY_NAME" 	property="categoryName"/>
 	</resultMap>
 	
+	<!-- 카테고리 이름 리스트 띄우기  -->
+	<select id="categoryList" resultMap="category">
+		SELECT * FROM BOARD_CATEGORY
+	</select>
+	
+	<!-- 카테고리 이름 찾기  -->
+	<select id="categoryName" resultMap="category">
+		SELECT CATEGORY_NAME
+		FROM BOARD_CATEGORY
+		WHERE CATEGORY_NUM = #{categoryNum}
+	</select>
+	
+	<!-- 게시판 리스트 띄우기  -->
 	<select id="boardList" resultMap="board">
 		SELECT BOARD_NUM,
 				BOARD_TITLE,
 				BOARD_WRITER,
 				TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD') AS BOARD_CREATE_DATE,
 				BOARD_READ_CNT
+				CATEGORY_NUM
 		FROM BOARD_TEST
-				
+		WHERE CATEGORY_NUM = #{categoryNum}
 	</select>
 	
 </mapper>

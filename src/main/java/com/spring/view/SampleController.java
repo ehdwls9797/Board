@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.biz.SampleService;
+import com.spring.biz.vo.BoardCategoryVO;
 import com.spring.biz.vo.BoardVO;
 
 @Controller
@@ -15,16 +16,22 @@ public class SampleController {
 	SampleService sampleService;
 	
 	@RequestMapping(value = "/sample.do")
-	public String sample() {
+	public String sample(Model model) {
+		
+		List<BoardCategoryVO> category = sampleService.categoryList();
+		model.addAttribute("category", category);
+		
 		return "sample/sample"; 
 	}
 	
 	@RequestMapping(value = "/board.do")
-	public String board(Model model) {
+	public String board(Model model, int categoryNum) {
 		
-		List<BoardVO> list = sampleService.boardList();
-		
+		List<BoardVO> list = sampleService.boardList(categoryNum);
+		BoardCategoryVO vo = sampleService.categoryName(categoryNum);
 		model.addAttribute("board", list);
+		model.addAttribute("categoryName", vo);
+		model.addAttribute("category", categoryNum);
 		
 		return "sample/board"; 
 	}

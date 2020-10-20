@@ -10,17 +10,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <style type="text/css">
 	tr, td{
-		border: 1px solid black;
-		border-collapse: collapse;
+		text-align: center;
 	}
 </style>
 </head>
 <body>
+<c:if test="${category == 1 }">
+
 <div align="center">
-<h1>게시판 리스트</h1>
+<div style="height: 50px;"></div>
+<h1>${categoryName.categoryName }</h1>
+<div style="height: 50px;"></div>
 
 <table class="table table-striped">
-	<tr class="a">
+	<tr>
 		<td>글번호</td>
 		<td>제목</td>
 		<td>작성자</td>
@@ -35,10 +38,12 @@
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>
 	</tr>
-	</c:forEach>	
-	
+	</c:forEach>
 </table>
+<button type="button" class="btn btn-success">글쓰기</button>
 
 </div>
+
+</c:if>
 </body>
 </html>
