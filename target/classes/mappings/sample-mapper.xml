@@ -43,6 +43,23 @@
 		WHERE CATEGORY_NUM = #{categoryNum}
 	</select>
 	
+	<!-- 게시판 글쓰기 -->
+	<insert id="insertBoard">
+		INSERT INTO BOARD_TEST (
+			BOARD_NUM,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CATEGORY_NUM
+		) VALUES (
+			(SELECT NVL(MAX(BOARD_NUM) + 1, 1) FROM BOARD_TEST),
+			#{boardTitle},
+			#{boardWriter},
+			#{boardContent},
+			#{categoryNum}
+		)
+	</insert>
+	
 </mapper>
 
 

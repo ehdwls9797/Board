@@ -13,6 +13,8 @@ public interface SampleService {
 	
 	List<BoardVO> boardList(int categoryNum);
 	
+	int insertBoard(BoardVO boardVO);
+	
 }
 
 

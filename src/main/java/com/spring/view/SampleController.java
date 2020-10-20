@@ -37,10 +37,20 @@ public class SampleController {
 	}
 	
 	@RequestMapping(value = "/writeForm.do")
-	public String writeForm(Model model) {
+	public String writeForm(Model model, int categoryNum) {
 		
+		model.addAttribute("category", categoryNum);
 		
 		return "sample/writeForm"; 
+	}
+	
+	@RequestMapping(value = "/write.do")
+	public String write(Model model, BoardVO boardVO) {
+		
+		sampleService.insertBoard(boardVO);
+		model.addAttribute("category", boardVO.getCategoryNum());
+		
+		return "redirect:board.do"; 
 	}
 	
 }

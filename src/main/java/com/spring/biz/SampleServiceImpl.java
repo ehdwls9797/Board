@@ -32,6 +32,12 @@ public class SampleServiceImpl implements SampleService{
 		return sqlSession.selectOne("categoryName", categoryNum);
 	}
 
+	@Override
+	public int insertBoard(BoardVO boardVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertBoard", boardVO);
+	}
+
 	
 	
 }
