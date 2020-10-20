@@ -48,9 +48,8 @@ public class SampleController {
 	public String write(Model model, BoardVO boardVO) {
 		
 		sampleService.insertBoard(boardVO);
-		model.addAttribute("category", boardVO.getCategoryNum());
 		
-		return "redirect:board.do"; 
+		return "redirect:board.do?categoryNum="+boardVO.getCategoryNum(); 
 	}
 	
 }
