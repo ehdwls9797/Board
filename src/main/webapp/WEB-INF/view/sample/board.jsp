@@ -21,7 +21,7 @@
 <div style="height: 50px;"></div>
 <h1>${categoryName.categoryName }</h1>
 <div style="height: 50px;"></div>
-
+<!--  -->
 <table class="table table-striped">
 	<tr>
 		<td>글번호</td>
