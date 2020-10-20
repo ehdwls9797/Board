@@ -8,12 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- <img src="resources/images/spongebob.png" width="100px;"> -->
-<!-- Jquey 기능을 가능하게 하는 SCRIPT -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- <script src="resources/js/sample.js"></script> -->
+<!--<script src="resources/js/sample.js"></script>-->
 <!-- bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- Jquey 기능을 가능하게 하는 SCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- bootstrap 기능을 가능하세 하는 SCRIPT -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -26,15 +26,6 @@
 
 </head>
 <body>
-<div align="center">
-  <h1>게시판 종류</h1>
-</div>
-<div style="height: 40px;"></div>
-<ul>
-	<c:forEach items="${category }" var="vo">
-	<li><a href="board.do?categoryNum=${vo.categoryNum }">${vo.categoryName}</a></li>
-	</c:forEach>
-</ul>
-
+11111111111111111111
 </body>
 </html>

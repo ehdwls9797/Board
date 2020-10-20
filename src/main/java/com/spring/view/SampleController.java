@@ -36,6 +36,13 @@ public class SampleController {
 		return "sample/board"; 
 	}
 	
+	@RequestMapping(value = "/writeForm.do")
+	public String writeForm(Model model) {
+		
+		
+		return "sample/writeForm"; 
+	}
+	
 }
 
 
