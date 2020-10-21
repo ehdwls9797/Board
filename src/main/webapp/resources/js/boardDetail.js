@@ -8,6 +8,15 @@ $(document).ready(function(){
 		location.href = "delete.do?categoryNum="+ categoryNum+"&boardNum="+boardNum;
 		
 	});
+	
+	$(document).on('click', '#updateBtn', function() {
+		var boardNum = $('#btnD1').val();
+		var categoryNum = $('#btnD2').val();
+		
+		location.href = "updateForm.do?categoryNum="+ categoryNum+"&boardNum="+boardNum;
+		
+	});
+	
 });
 
 /* 함수선언 영역*/

@@ -21,6 +21,10 @@ public interface SampleService {
 	
 	int readCnt(int boardNum);
 	
+	int updateBoard(BoardVO boardVO);
+	
+	
+	
 }
 
 

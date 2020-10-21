@@ -56,6 +56,12 @@ public class SampleServiceImpl implements SampleService{
 		return sqlSession.update("readCnt", boardNum);
 	}
 
+	@Override
+	public int updateBoard(BoardVO boardVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("updateBoard", boardVO);
+	}
+
 	
 	
 }

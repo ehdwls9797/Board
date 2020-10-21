@@ -77,6 +77,18 @@ public class SampleController {
 		return "redirect:board.do?categoryNum="+boardVO.getCategoryNum();
 	}
 	
+	// 수정화면
+	@RequestMapping(value = "/updateForm.do")
+	public String updateForm(Model model, BoardVO boardVO) {
+		
+		BoardVO vo = sampleService.detail(boardVO);
+		model.addAttribute("boardNum", boardVO.getBoardNum());
+		model.addAttribute("categoryNum", boardVO.getCategoryNum());
+		model.addAttribute("update", vo);
+		
+		return "sample/updateForm";
+	}
+	
 }
 
 
