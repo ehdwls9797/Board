@@ -37,7 +37,7 @@
 	<c:forEach items="${board }" var="vo">
 	<tr>
 		<td>${vo.boardNum }</td>
-		<td>${vo.boardTitle }</td>
+		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}">${vo.boardTitle }</a></td>
 		<td>${vo.boardWriter }</td>
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>
@@ -67,7 +67,7 @@
 	<c:forEach items="${board }" var="vo">
 	<tr>
 		<td>${vo.boardNum }</td>
-		<td>${vo.boardTitle }</td>
+		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}">${vo.boardTitle }</a></td>
 		<td>${vo.boardWriter }</td>
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>
@@ -97,7 +97,7 @@
 	<c:forEach items="${board }" var="vo">
 	<tr>
 		<td>${vo.boardNum }</td>
-		<td>${vo.boardTitle }</td>
+		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}">${vo.boardTitle }</a></td>
 		<td>${vo.boardWriter }</td>
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>

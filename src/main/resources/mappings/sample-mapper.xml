@@ -37,7 +37,7 @@
 				BOARD_TITLE,
 				BOARD_WRITER,
 				TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD') AS BOARD_CREATE_DATE,
-				BOARD_READ_CNT
+				BOARD_READ_CNT,
 				CATEGORY_NUM
 		FROM BOARD_TEST
 		WHERE CATEGORY_NUM = #{categoryNum}
@@ -59,6 +59,32 @@
 			#{categoryNum}
 		)
 	</insert>
+	
+	<!-- 조회수 증가  -->
+	<update id="readCnt">
+		UPDATE BOARD_TEST
+		SET BOARD_READ_CNT = BOARD_READ_CNT+1
+		WHERE BOARD_NUM = #{boardNum}
+	</update>
+	
+	<!-- 상세 보기  -->
+	<select id="detail" resultMap="board">
+		SELECT CATEGORY_NUM,
+				BOARD_TITLE,
+				BOARD_CONTENT,
+				BOARD_WRITER,
+				BOARD_NUM
+		FROM BOARD_TEST
+		WHERE BOARD_NUM=#{boardNum}
+		AND CATEGORY_NUM=#{categoryNum}
+	</select>
+	
+	<!-- 글삭제 -->
+	<delete id="deleteBoard">
+		DELETE FROM BOARD_TEST
+		WHERE CATEGORY_NUM = #{categoryNum}
+		AND BOARD_NUM = #{boardNum}
+	</delete>
 	
 </mapper>
 

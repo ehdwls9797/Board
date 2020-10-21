@@ -15,6 +15,12 @@ public interface SampleService {
 	
 	int insertBoard(BoardVO boardVO);
 	
+	BoardVO detail(BoardVO boardVO);
+	
+	int deleteBoard(BoardVO boardVO);
+	
+	int readCnt(int boardNum);
+	
 }
 
 

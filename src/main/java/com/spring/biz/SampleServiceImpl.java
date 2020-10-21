@@ -38,6 +38,24 @@ public class SampleServiceImpl implements SampleService{
 		return sqlSession.insert("insertBoard", boardVO);
 	}
 
+	@Override
+	public BoardVO detail(BoardVO boardVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("detail", boardVO);
+	}
+
+	@Override
+	public int deleteBoard(BoardVO boardVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("deleteBoard", boardVO);
+	}
+
+	@Override
+	public int readCnt(int boardNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("readCnt", boardNum);
+	}
+
 	
 	
 }
