@@ -19,6 +19,16 @@
 		<result column="CATEGORY_NAME" 	property="categoryName"/>
 	</resultMap>
 	
+	<resultMap type="com.spring.biz.vo.BoardCommentVO" id="comment">
+		<result column="COMMENT_NUM" 	property="commentNum"/>
+		<result column="BOARD_NUM" 	property="boardNum"/>
+		<result column="COMMENT_CONTENT" 	property="commentContent"/>
+		<result column="COMMENT_CREATE_DATE" 	property="commentCreateDate"/>
+		<result column="COMMENT_WRITER" 	property="commentWriter"/>
+		<result column="COMMENT_PRICE" 	property="commentPrice"/>
+		<result column="COMMENT_TITLE" 	property="commentTitle"/>
+	</resultMap>
+	
 	<!-- 카테고리 이름 리스트 띄우기  -->
 	<select id="categoryList" resultMap="category">
 		SELECT * FROM BOARD_CATEGORY

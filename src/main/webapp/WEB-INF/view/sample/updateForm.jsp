@@ -59,7 +59,7 @@
 		<h1>게시글 작성 화면</h1>
 		<div style="height: 40px;"></div>
 
-		<form action="write.do" method="post">
+		<form action="update.do" method="post">
 			<table>
 				<colgroup>
 					<col width="10%">
@@ -71,7 +71,7 @@
 					<td class="aa">제목</td>
 					<td class="bb"><input type="text" name="boardTitle" placeholder="제목작성" required value="${update.boardTitle }"></td>
 					<td class="aa">작성자</td>
-					<td class="bb"><input type="text" name="boardWriter" placeholder="작성자" required value="${update.boardWriter }"></td>
+					<td class="bb"><input type="text" name="boardWriter" placeholder="작성자" required value="${update.boardWriter }" readonly></td>
 				</tr>
 				<tr height="500px;">
 					<td class="aa">내용</td>
@@ -85,8 +85,8 @@
 			</script></td>
 				</tr>
 			</table>
-<%-- 		<input type="hidden" name="categoryNum" value="${category }">
-			<input type="hidden" name="boardNum" value="${category }"> --%>
+			<input type="hidden" name="categoryNum" value="${categoryNum }">
+			<input type="hidden" name="boardNum" value="${boardNum }">
 
 			<div style="height: 40px;"></div>
 			<input type="submit" value="글수정" class="btn btn-success">

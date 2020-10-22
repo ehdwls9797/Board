@@ -89,6 +89,15 @@ public class SampleController {
 		return "sample/updateForm";
 	}
 	
+	// 수정완료
+	@RequestMapping(value = "/update.do")
+	public String update(Model model, BoardVO boardVO) {
+		
+		sampleService.updateBoard(boardVO);
+		
+		return "redirect:board.do?categoryNum="+boardVO.getCategoryNum();
+	}
+	
 }
 
 

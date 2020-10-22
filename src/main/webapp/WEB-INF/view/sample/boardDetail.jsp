@@ -72,14 +72,32 @@
 					<td colspan="3"><pre>${detail.boardContent }</pre></td>
 				</tr>
 			</table>
-<div style="height: 30px;"></div>
+</div>
+<div style="height: 10px;"></div>
+<hr>
+<div>
+	<p style="padding-left: 840px; font-size: 20px;">댓글</p>
+	
+	<div>
+		<ul>
+			<li>댓글1</li>
+			<li>댓글2</li>
+			<li>댓글3</li>
+		</ul>
+	</div>
+	<div>댓글 쓰는곳</div>
+</div>
+
 <input type="hidden" value="${detail.boardNum }" id="btnD1">
 <input type="hidden" value="${detail.categoryNum }" id="btnD2">
-<div>
+
+
+<div style="height: 30px;"></div>
+<div align="center">
 <button type="button" class="btn btn-success" id="updateBtn">글수정</button>
 <button type="button" class="btn btn-success" id="deleteBtn">글삭제</button>
 </div>
 	
-	</div>
+	
 </body>
 </html>
