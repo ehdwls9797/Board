@@ -104,6 +104,20 @@
 		AND CATEGORY_NUM = #{categoryNum}
 	</update>
 	
+	<insert id="insertComment1">
+		INSERT INTO BOARD_COMMENT(
+			COMMENT_NUM,
+			BOARD_NUM,
+			COMMENT_CONTENT,
+			COMMENT_WRITER,
+		) VALUES(
+			#{commentNum},
+			#{boardNum},
+			#{commentContent},
+			#{commentWriter}
+		)
+	</insert>
+	
 </mapper>
 
 

@@ -85,11 +85,18 @@
 			<li>댓글3</li>
 		</ul>
 	</div>
-	<div>댓글 쓰는곳</div>
+	<div>
+	<form action="insertComment.do" method="post">
+	<div><input type="text" name="commentWriter"></div>
+	<div><input type="text" name="commentContent"></div>
+	<input type="hidden" value="${detail.boardNum }" id="btnD1">
+	<input type="hidden" value="${detail.categoryNum }" id="btnD2">
+	<div style="height: 10px;"></div>
+	<input type="submit" value="작성" class="btn btn-success">
+	</form>
+	</div>
 </div>
 
-<input type="hidden" value="${detail.boardNum }" id="btnD1">
-<input type="hidden" value="${detail.categoryNum }" id="btnD2">
 
 
 <div style="height: 30px;"></div>

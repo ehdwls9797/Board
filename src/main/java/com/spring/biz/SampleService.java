@@ -3,6 +3,7 @@ package com.spring.biz;
 import java.util.List;
 
 import com.spring.biz.vo.BoardCategoryVO;
+import com.spring.biz.vo.BoardCommentVO;
 import com.spring.biz.vo.BoardVO;
 
 public interface SampleService {
@@ -22,6 +23,8 @@ public interface SampleService {
 	int readCnt(int boardNum);
 	
 	int updateBoard(BoardVO boardVO);
+	
+	int insertComment1(BoardCommentVO boardCommentVO);
 	
 	
 	

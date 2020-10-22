@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.biz.SampleService;
 import com.spring.biz.vo.BoardCategoryVO;
+import com.spring.biz.vo.BoardCommentVO;
 import com.spring.biz.vo.BoardVO;
 
 @Controller
@@ -98,6 +99,15 @@ public class SampleController {
 		return "redirect:board.do?categoryNum="+boardVO.getCategoryNum();
 	}
 	
+	// 댓글작성
+	@RequestMapping(value = "/insertComment.do")
+	public String insertComment(Model model, BoardCommentVO boardCommentVO) {
+		
+		sampleService.insertComment1(boardCommentVO);
+		
+		return "sample/hi";
+	}
+		
 }
 
 
