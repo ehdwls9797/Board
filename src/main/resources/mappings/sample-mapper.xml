@@ -109,14 +109,27 @@
 			COMMENT_NUM,
 			BOARD_NUM,
 			COMMENT_CONTENT,
-			COMMENT_WRITER,
+			COMMENT_WRITER
 		) VALUES(
-			#{commentNum},
+			(SELECT NVL(MAX(COMMENT_NUM) + 1, 1) FROM BOARD_COMMENT),
 			#{boardNum},
 			#{commentContent},
 			#{commentWriter}
 		)
 	</insert>
+	
+	<select id="selectComment" resultMap="comment">
+		SELECT * FROM BOARD_COMMENT
+		WHERE BOARD_NUM = #{boardNum}
+	</select>
+	
+	
+	<!-- 댓글 순서대로 보기위해 아직 미구현  -->
+<!-- <update id="">
+		UPDATE BOARD_COMMENT
+		SET COMMENT_PRICE = COMMENT_PRICE+1
+		WHERE BOARD_NUM = #{boardNum}
+	</update> -->
 	
 </mapper>
 

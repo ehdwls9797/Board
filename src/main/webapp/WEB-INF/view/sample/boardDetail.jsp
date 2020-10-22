@@ -51,7 +51,7 @@
 	<div align="center">
 	
 		<div style="height: 40px;"></div>
-		<h1>게시글 작성 화면</h1>
+		<h1>게시글 상세 화면</h1>
 		<div style="height: 40px;"></div>
 
 			<table>
@@ -80,19 +80,23 @@
 	
 	<div>
 		<ul>
-			<li>댓글1</li>
-			<li>댓글2</li>
-			<li>댓글3</li>
+			<c:forEach items="${commentList }" var="vo">
+			<li>
+				<div>작성자 : ${vo.commentWriter }</div>
+				<div>내용 : ${vo.commentContent }</div>
+				<div>날짜 : ${vo.commentCreateDate }</div>
+			</li>
+			</c:forEach>
 		</ul>
 	</div>
 	<div>
-	<form action="insertComment.do" method="post">
-	<div><input type="text" name="commentWriter"></div>
-	<div><input type="text" name="commentContent"></div>
-	<input type="hidden" value="${detail.boardNum }" id="btnD1">
-	<input type="hidden" value="${detail.categoryNum }" id="btnD2">
-	<div style="height: 10px;"></div>
-	<input type="submit" value="작성" class="btn btn-success">
+		<form action="insertComment.do" method="post">
+		<div><input type="text" name="commentWriter"></div>
+		<div><input type="text" name="commentContent"></div>
+		<input type="hidden" name="boardNum" value="${detail.boardNum }" id="btnD1">
+		<input type="hidden" name="categoryNum" value="${detail.categoryNum }" id="btnD2">
+		<div style="height: 10px;"></div>
+		<input type="submit" value="작성" class="btn btn-success">
 	</form>
 	</div>
 </div>

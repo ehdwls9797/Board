@@ -60,6 +60,11 @@ public class SampleServiceImpl implements SampleService{
 		return sqlSession.insert("insertComment1", boardCommentVO);
 	}
 
+	@Override
+	public List<BoardCommentVO> selectComment(int boardNum) {
+		return sqlSession.selectList("selectComment", boardNum);
+	}
+
 	
 	
 }

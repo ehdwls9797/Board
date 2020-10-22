@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.spring.biz.SampleService;
 import com.spring.biz.vo.BoardCategoryVO;
 import com.spring.biz.vo.BoardCommentVO;
@@ -59,12 +61,14 @@ public class SampleController {
 	
 	// 상세보기
 	@RequestMapping(value = "/boardDetail.do")
-	public String boardDetail(Model model, int categoryNum, BoardVO boardVO) {
+	public String boardDetail(Model model, int categoryNum, BoardVO boardVO, int boardNum) {
 		
 		BoardVO vo = sampleService.detail(boardVO);
 		model.addAttribute("category", categoryNum);
 		model.addAttribute("detail", vo);
 		sampleService.readCnt(vo.getBoardNum());
+		List<BoardCommentVO> list = sampleService.selectComment(boardNum);
+		model.addAttribute("commentList", list);
 		
 		return "sample/boardDetail"; 
 	}
@@ -101,11 +105,13 @@ public class SampleController {
 	
 	// 댓글작성
 	@RequestMapping(value = "/insertComment.do")
-	public String insertComment(Model model, BoardCommentVO boardCommentVO) {
+	public String insertComment(Model model, BoardCommentVO boardCommentVO, BoardVO boardVO, RedirectAttributes re) {
 		
 		sampleService.insertComment1(boardCommentVO);
+		re.addAttribute("categoryNum", boardVO.getCategoryNum());
+		re.addAttribute("boardNum", boardVO.getBoardNum());
 		
-		return "sample/hi";
+		return "redirect:boardDetail.do";
 	}
 		
 }
