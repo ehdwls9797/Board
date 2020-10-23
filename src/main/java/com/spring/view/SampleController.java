@@ -30,13 +30,14 @@ public class SampleController {
 	
 	//게시판 리스트 + 카테고리 명 + 카테고리 번호 가지고가기
 	@RequestMapping(value = "/board.do")
-	public String board(Model model, int categoryNum) {
-		
-		List<BoardVO> list = sampleService.boardList(categoryNum);
-		BoardCategoryVO vo = sampleService.categoryName(categoryNum);
+	public String board(Model model, BoardVO boardVO) {
+		System.out.println("!!!!!!!!!!!");
+		System.out.println(boardVO.getCategoryNum());
+		List<BoardVO> list = sampleService.boardList(boardVO);
+		BoardCategoryVO vo = sampleService.categoryName(boardVO.getCategoryNum());
 		model.addAttribute("board", list);
 		model.addAttribute("categoryName", vo);
-		model.addAttribute("category", categoryNum);
+		model.addAttribute("category", boardVO.getCategoryNum());
 		
 		return "sample/board"; 
 	}
@@ -110,10 +111,11 @@ public class SampleController {
 		sampleService.insertComment1(boardCommentVO);
 		re.addAttribute("categoryNum", boardVO.getCategoryNum());
 		re.addAttribute("boardNum", boardVO.getBoardNum());
+		sampleService.commentCnt(boardVO.getBoardNum());
 		
 		return "redirect:boardDetail.do";
 	}
-		
+	
 }
 
 

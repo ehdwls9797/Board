@@ -21,8 +21,8 @@ public class SampleServiceImpl implements SampleService{
 	}
 	
 	@Override
-	public List<BoardVO> boardList(int categoryNum) {
-		return sqlSession.selectList("boardList", categoryNum);
+	public List<BoardVO> boardList(BoardVO boardVO) {
+		return sqlSession.selectList("boardList", boardVO);
 	}
 
 	@Override
@@ -63,6 +63,12 @@ public class SampleServiceImpl implements SampleService{
 	@Override
 	public List<BoardCommentVO> selectComment(int boardNum) {
 		return sqlSession.selectList("selectComment", boardNum);
+	}
+
+	@Override
+	public int commentCnt(int boardNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("commentCnt", boardNum);
 	}
 
 	

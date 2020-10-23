@@ -12,7 +12,7 @@ public interface SampleService {
 	
 	BoardCategoryVO categoryName (int categoryNum);
 	
-	List<BoardVO> boardList(int categoryNum);
+	List<BoardVO> boardList(BoardVO boardVO);
 	
 	int insertBoard(BoardVO boardVO);
 	
@@ -27,6 +27,8 @@ public interface SampleService {
 	int insertComment1(BoardCommentVO boardCommentVO);
 	
 	List<BoardCommentVO> selectComment(int boardNum);
+	
+	int commentCnt(int boardNum);
 	
 	
 	

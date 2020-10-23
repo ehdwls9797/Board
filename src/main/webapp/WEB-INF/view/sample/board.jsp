@@ -18,6 +18,27 @@
 </head>
 <body>
 <input type="hidden" value="${category }" id="boardCategory">
+<div style="height: 30px;"></div>
+<div align="center">
+	<form action="board.do" method="post">
+	<table border="1" style="width: 800px;">
+		<tr>
+			<td align="center">검색조건</td>
+			<td align="center">
+				<select style="width: 95%" name="searchKeyword">
+					<option value="BOARD_TITLE">제목</option>
+					<option value="BOARD_WRITER">작성자</option>
+				</select>
+			</td>
+		
+			<td align="center">제목검색</td>
+			<td align="center"><input type="text" style="width: 98%" name="searchValue"></td>
+			<td align="center"><input type="submit" value="검색" style="width: 98%"></td>
+		</tr>
+	</table>
+	<input type="hidden" value="${category }" name="categoryNum" id="boardCategory">
+	</form>
+</div>
 
 <!-- 자유게시판 -->
 
@@ -37,7 +58,7 @@
 	<c:forEach items="${board }" var="vo">
 	<tr>
 		<td>${vo.boardNum }</td>
-		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}">${vo.boardTitle }</a></td>
+		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}">${vo.boardTitle }<c:if test="${vo.commentCnt != 0 }"> <span style="color: red"> (${vo.commentCnt})</span></c:if></a></td>
 		<td>${vo.boardWriter }</td>
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>
@@ -72,6 +93,13 @@
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>
 	</tr>
+<!-- 	<tr>
+		<td>RE</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+	</tr> -->
 	</c:forEach>
 </table>
 <button type="button" class="btn btn-success" id="board2">글쓰기</button>

@@ -11,6 +11,7 @@
 		<result column="BOARD_WRITER" 		property="boardWriter"/>
 		<result column="BOARD_CREATE_DATE" 	property="createDate"/>
 		<result column="BOARD_READ_CNT" 	property="readCnt"/>
+		<result column="BOARD_COMMENT_CNT" 	property="commentCnt"/>
 		<result column="CATEGORY_NUM" 		property="categoryNum"/>
 	</resultMap>
 	
@@ -48,9 +49,14 @@
 				BOARD_WRITER,
 				TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD') AS BOARD_CREATE_DATE,
 				BOARD_READ_CNT,
-				CATEGORY_NUM
+				CATEGORY_NUM,
+				BOARD_COMMENT_CNT
 		FROM BOARD_TEST
-		WHERE CATEGORY_NUM = #{categoryNum}
+		WHERE 1 = 1
+		<if test="searchValue != null and searchValue != ''">
+		AND UPPER(${searchKeyword}) LIKE '%' || UPPER(#{searchValue}) || '%' 
+		</if>
+		AND CATEGORY_NUM = #{categoryNum}
 	</select>
 	
 	<!-- 게시판 글쓰기 -->
@@ -96,6 +102,7 @@
 		AND BOARD_NUM = #{boardNum}
 	</delete>
 	
+	<!-- 글수정 -->
 	<update id="updateBoard">
 		UPDATE BOARD_TEST
 		SET BOARD_TITLE = #{boardTitle}
@@ -104,6 +111,7 @@
 		AND CATEGORY_NUM = #{categoryNum}
 	</update>
 	
+	<!-- 댓글 입력 -->
 	<insert id="insertComment1">
 		INSERT INTO BOARD_COMMENT(
 			COMMENT_NUM,
@@ -118,18 +126,20 @@
 		)
 	</insert>
 	
+	<!-- 댓글리스트 불러오기 -->
 	<select id="selectComment" resultMap="comment">
 		SELECT * FROM BOARD_COMMENT
 		WHERE BOARD_NUM = #{boardNum}
+		ORDER BY COMMENT_CREATE_DATE ASC
 	</select>
 	
 	
-	<!-- 댓글 순서대로 보기위해 아직 미구현  -->
-<!-- <update id="">
-		UPDATE BOARD_COMMENT
-		SET COMMENT_PRICE = COMMENT_PRICE+1
+	<!-- 댓글 개수 증가 -->
+	<update id="commentCnt">
+		UPDATE BOARD_TEST
+		SET BOARD_COMMENT_CNT = BOARD_COMMENT_CNT + 1
 		WHERE BOARD_NUM = #{boardNum}
-	</update> -->
+	</update>
 	
 </mapper>
 

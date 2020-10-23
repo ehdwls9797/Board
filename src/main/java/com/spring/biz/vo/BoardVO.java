@@ -18,7 +18,30 @@ public class BoardVO {
 	private String createDate;
 	private int readCnt;
 	private int categoryNum;
+	private int commentCnt;
 	
+	private String searchKeyword;
+	private String searchValue;
+	
+	
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+	public String getSearchValue() {
+		return searchValue;
+	}
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -62,12 +85,6 @@ public class BoardVO {
 		this.categoryNum = categoryNum;
 	}
 	
-	@Override
-	public String toString() {
-		return "Board [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
-				+ ", boardWriter=" + boardWriter + ", createDate=" + createDate + ", readCnt=" + readCnt
-				+ ", categoryNum=" + categoryNum + "]";
-	}
 	
 }
 

@@ -10,7 +10,7 @@
 <!-- Jquey 기능을 가능하게 하는 SCRIPT -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- <img src="resources/images/spongebob.png" width="100px;"> -->
-<script src="resources/js/boardDetail.js?ver=1"></script>
+<script src="resources/js/boardDetail.js?ver=2"></script>
 <!-- bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -75,8 +75,10 @@
 </div>
 <div style="height: 10px;"></div>
 <hr>
-<div>
-	<p style="padding-left: 840px; font-size: 20px;">댓글</p>
+<c:if test="${detail.categoryNum == 1}">
+
+<div align="center">
+	<p style="font-size: 20px;">댓글</p>
 	
 	<div>
 		<ul>
@@ -91,8 +93,8 @@
 	</div>
 	<div>
 		<form action="insertComment.do" method="post">
-		<div><input type="text" name="commentWriter"></div>
-		<div><input type="text" name="commentContent"></div>
+		<div>글쓴이 : <input type="text" name="commentWriter"></div>
+		<div>내용 : <input type="text" name="commentContent"></div>
 		<input type="hidden" name="boardNum" value="${detail.boardNum }" id="btnD1">
 		<input type="hidden" name="categoryNum" value="${detail.categoryNum }" id="btnD2">
 		<div style="height: 10px;"></div>
@@ -101,12 +103,18 @@
 	</div>
 </div>
 
+</c:if>
 
 
+<input type="hidden" name="boardNum" value="${detail.boardNum }" id="btnD1">
+<input type="hidden" name="categoryNum" value="${detail.categoryNum }" id="btnD2">
 <div style="height: 30px;"></div>
 <div align="center">
 <button type="button" class="btn btn-success" id="updateBtn">글수정</button>
 <button type="button" class="btn btn-success" id="deleteBtn">글삭제</button>
+<c:if test="${detail.categoryNum == 2 }">
+<button type="button" class="btn btn-success" id="cBtn">답글</button>
+</c:if>
 </div>
 	
 	
