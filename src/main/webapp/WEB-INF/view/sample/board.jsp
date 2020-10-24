@@ -58,6 +58,7 @@
 	<c:forEach items="${board }" var="vo">
 	<tr>
 		<td>${vo.boardNum }</td>
+		<!-- 댓글갯수 입력 -->
 		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}">${vo.boardTitle }<c:if test="${vo.commentCnt != 0 }"> <span style="color: red"> (${vo.commentCnt})</span></c:if></a></td>
 		<td>${vo.boardWriter }</td>
 		<td>${vo.createDate }</td>
