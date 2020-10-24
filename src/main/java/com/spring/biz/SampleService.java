@@ -24,7 +24,7 @@ public interface SampleService {
 	
 	int updateBoard(BoardVO boardVO);
 	
-	int insertComment1(BoardCommentVO boardCommentVO);
+	int insertComment(BoardCommentVO boardCommentVO);
 	
 	List<BoardCommentVO> selectComment(int boardNum);
 	

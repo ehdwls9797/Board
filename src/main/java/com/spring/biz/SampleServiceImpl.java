@@ -56,7 +56,7 @@ public class SampleServiceImpl implements SampleService{
 	}
 
 	@Override
-	public int insertComment1(BoardCommentVO boardCommentVO) {
+	public int insertComment(BoardCommentVO boardCommentVO) {
 		return sqlSession.insert("insertComment1", boardCommentVO);
 	}
 

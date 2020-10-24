@@ -108,7 +108,7 @@ public class SampleController {
 	@RequestMapping(value = "/insertComment.do")
 	public String insertComment(Model model, BoardCommentVO boardCommentVO, BoardVO boardVO, RedirectAttributes re) {
 		
-		sampleService.insertComment1(boardCommentVO);
+		sampleService.insertComment(boardCommentVO);
 		re.addAttribute("categoryNum", boardVO.getCategoryNum());
 		re.addAttribute("boardNum", boardVO.getBoardNum());
 		sampleService.commentCnt(boardVO.getBoardNum());
