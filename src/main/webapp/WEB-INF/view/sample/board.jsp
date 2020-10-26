@@ -72,7 +72,6 @@
 </c:if>
 
 <!-- 건의게시판 -->
-
 <c:if test="${category == 2 }">
 <div align="center">
 <div style="height: 50px;"></div>
@@ -94,12 +93,15 @@
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>
 	</tr>
+<!-- if re가 있으면 -->
+<!-- for each -->
+<!-- 답글구현 -->
 <!-- 	<tr>
 		<td>RE</td>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
+		<td>~</td>
+		<td>~</td>
+		<td>~</td>
+		<td>~</td>
 	</tr> -->
 	</c:forEach>
 </table>
