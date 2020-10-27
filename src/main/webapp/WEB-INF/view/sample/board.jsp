@@ -79,7 +79,6 @@
 <div style="height: 50px;"></div>
 <table class="table table-striped">
 	<tr>
-		<td>글번호</td>
 		<td>제목</td>
 		<td>작성자</td>
 		<td>날짜</td>
@@ -87,22 +86,11 @@
 	</tr>
 	<c:forEach items="${board }" var="vo">
 	<tr>
-		<td>${vo.boardNum }</td>
-		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}">${vo.boardTitle }</a></td>
+		<td><a href="boardDetail.do?categoryNum=${category }&boardNum=${vo.boardNum}"><c:if test="${vo.boardGroup != 0}"><span>[답글]</span></c:if>${vo.boardTitle }</a></td>
 		<td>${vo.boardWriter }</td>
 		<td>${vo.createDate }</td>
 		<td>${vo.readCnt }</td>
 	</tr>
-<!-- if re가 있으면 -->
-<!-- for each -->
-<!-- 답글구현 -->
-<!-- 	<tr>
-		<td>RE</td>
-		<td>~</td>
-		<td>~</td>
-		<td>~</td>
-		<td>~</td>
-	</tr> -->
 	</c:forEach>
 </table>
 <button type="button" class="btn btn-success" id="board2">글쓰기</button>

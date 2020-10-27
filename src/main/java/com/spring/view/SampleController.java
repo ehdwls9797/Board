@@ -116,6 +116,27 @@ public class SampleController {
 		return "redirect:boardDetail.do";
 	}
 	
+	// 댓글작성
+	@RequestMapping(value = "/replyForm.do")
+	public String replyForm(BoardVO boardVO, Model model) {
+
+		model.addAttribute("categoryNum", boardVO.getCategoryNum());
+		model.addAttribute("boardNum", boardVO.getBoardNum());
+		
+		return "sample/reply";
+	}
+	
+	// 댓글작성
+	@RequestMapping(value = "/reply.do")
+	public String reply(BoardVO boardVO, Model model) {
+
+		System.out.println(boardVO);
+		sampleService.insertBoard1(boardVO);
+		
+		return "redirect:board.do?categoryNum="+boardVO.getCategoryNum();
+	}
+	
+	
 }
 
 

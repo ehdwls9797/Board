@@ -19,11 +19,40 @@ public class BoardVO {
 	private int readCnt;
 	private int categoryNum;
 	private int commentCnt;
+	private int boardGroup;
+	private int boardOrder;
 	
 	private String searchKeyword;
 	private String searchValue;
 	
+//	/* private int totalCount = ; */
+//	 
+//	private int listCount = 10;
+//	 
+//	private int totalPage = totalCount / listCount;
+
 	
+	
+	public int getBoardGroup() {
+		return boardGroup;
+	}
+	@Override
+	public String toString() {
+		return "BoardVO [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+				+ ", boardWriter=" + boardWriter + ", createDate=" + createDate + ", readCnt=" + readCnt
+				+ ", categoryNum=" + categoryNum + ", commentCnt=" + commentCnt + ", boardGroup=" + boardGroup
+				+ ", boardOrder=" + boardOrder + ", searchKeyword=" + searchKeyword + ", searchValue=" + searchValue
+				+ "]";
+	}
+	public int getBoardOrder() {
+		return boardOrder;
+	}
+	public void setBoardOrder(int boardOrder) {
+		this.boardOrder = boardOrder;
+	}
+	public void setBoardGroup(int boardGroup) {
+		this.boardGroup = boardGroup;
+	}
 	public int getCommentCnt() {
 		return commentCnt;
 	}

@@ -14,10 +14,16 @@ public class BoardCommentVO {
 	private String commentContent;
 	private String commentCreateDate;
 	private String commentWriter;
-	private String commentPrice;
 	
-	// 카테고리 2번일때 써야함
-	private String commentTitle;
+	
+
+	public String getCommentWriter() {
+		return commentWriter;
+	}
+
+	public void setCommentWriter(String commentWriter) {
+		this.commentWriter = commentWriter;
+	}
 
 	public int getCommentNum() {
 		return commentNum;
@@ -51,38 +57,7 @@ public class BoardCommentVO {
 		this.commentCreateDate = commentCreateDate;
 	}
 
-	public String getCommentWriter() {
-		return commentWriter;
-	}
 
-	public void setCommentWriter(String commentWriter) {
-		this.commentWriter = commentWriter;
-	}
-
-	public String getCommentPrice() {
-		return commentPrice;
-	}
-
-	public void setCommentPrice(String commentPrice) {
-		this.commentPrice = commentPrice;
-	}
-
-	public String getCommentTitle() {
-		return commentTitle;
-	}
-
-	public void setCommentTitle(String commentTitle) {
-		this.commentTitle = commentTitle;
-	}
-
-	@Override
-	public String toString() {
-		return "BoardCommentVO [commentNum=" + commentNum + ", boardNum=" + boardNum + ", commentContent="
-				+ commentContent + ", commentCreateDate=" + commentCreateDate + ", commentWriter=" + commentWriter
-				+ ", commentPrice=" + commentPrice + ", commentTitle=" + commentTitle + "]";
-	}
-	
-	
 }
 
 

@@ -41,7 +41,7 @@ public interface SampleService {
 	//댓글 총 갯수 출력
 	int commentCnt(int boardNum);
 	
-	
+	int insertBoard1(BoardVO boardVO);
 	
 }
 

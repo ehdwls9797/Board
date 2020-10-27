@@ -71,6 +71,12 @@ public class SampleServiceImpl implements SampleService{
 		return sqlSession.update("commentCnt", boardNum);
 	}
 
+	@Override
+	public int insertBoard1(BoardVO boardVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertBoard1", boardVO);
+	}
+
 	
 	
 }

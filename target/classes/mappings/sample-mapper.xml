@@ -13,6 +13,8 @@
 		<result column="BOARD_READ_CNT" 	property="readCnt"/>
 		<result column="BOARD_COMMENT_CNT" 	property="commentCnt"/>
 		<result column="CATEGORY_NUM" 		property="categoryNum"/>
+		<result column="BOARD_GROUP" 		property="boardGroup"/>
+		<result column="BOARD_ORDER" 		property="boardOrder"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.biz.vo.BoardCategoryVO" id="category">
@@ -26,19 +28,17 @@
 		<result column="COMMENT_CONTENT" 	property="commentContent"/>
 		<result column="COMMENT_CREATE_DATE" 	property="commentCreateDate"/>
 		<result column="COMMENT_WRITER" 	property="commentWriter"/>
-		<result column="COMMENT_PRICE" 	property="commentPrice"/>
-		<result column="COMMENT_TITLE" 	property="commentTitle"/>
 	</resultMap>
 	
 	<!-- 카테고리 이름 리스트 띄우기  -->
 	<select id="categoryList" resultMap="category">
-		SELECT * FROM BOARD_CATEGORY
+		SELECT * FROM BOARD_CATEGORY_LIST
 	</select>
 	
 	<!-- 카테고리 이름 찾기  -->
 	<select id="categoryName" resultMap="category">
 		SELECT CATEGORY_NAME
-		FROM BOARD_CATEGORY
+		FROM BOARD_CATEGORY_LIST
 		WHERE CATEGORY_NUM = #{categoryNum}
 	</select>
 	
@@ -50,35 +50,64 @@
 				TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD') AS BOARD_CREATE_DATE,
 				BOARD_READ_CNT,
 				CATEGORY_NUM,
-				BOARD_COMMENT_CNT
-		FROM BOARD_TEST
+				BOARD_COMMENT_CNT,
+				BOARD_GROUP
+		FROM BOARD
 		WHERE 1 = 1
 		<if test="searchValue != null and searchValue != ''">
 		AND UPPER(${searchKeyword}) LIKE '%' || UPPER(#{searchValue}) || '%' 
 		</if>
 		AND CATEGORY_NUM = #{categoryNum}
+		ORDER BY BOARD_ORDER, BOARD_NUM
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) AS TOTALCOUNT FROM BOARD
 	</select>
 	
 	<!-- 게시판 글쓰기 -->
 	<insert id="insertBoard">
-		INSERT INTO BOARD_TEST (
+		INSERT INTO BOARD (
 			BOARD_NUM,
 			BOARD_TITLE,
 			BOARD_WRITER,
 			BOARD_CONTENT,
-			CATEGORY_NUM
+			CATEGORY_NUM,
+			BOARD_ORDER
 		) VALUES (
-			(SELECT NVL(MAX(BOARD_NUM) + 1, 1) FROM BOARD_TEST),
+			(SELECT NVL(MAX(BOARD_NUM) + 1, 1) FROM BOARD),
 			#{boardTitle},
 			#{boardWriter},
 			#{boardContent},
-			#{categoryNum}
+			#{categoryNum},
+			(SELECT NVL(MAX(BOARD_NUM) + 1, 1) FROM BOARD)
+		)
+	</insert>
+	
+	<!-- 답글 글쓰기 -->
+	<insert id="insertBoard1">
+		INSERT INTO BOARD (
+			BOARD_NUM,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CATEGORY_NUM,
+			BOARD_GROUP,
+			BOARD_ORDER
+		) VALUES (
+			(SELECT NVL(MAX(BOARD_NUM) + 1, 1) FROM BOARD),
+			#{boardTitle},
+			#{boardWriter},
+			#{boardContent},
+			#{categoryNum},
+			#{boardGroup},
+			#{boardGroup}
 		)
 	</insert>
 	
 	<!-- 조회수 증가  -->
 	<update id="readCnt">
-		UPDATE BOARD_TEST
+		UPDATE BOARD
 		SET BOARD_READ_CNT = BOARD_READ_CNT+1
 		WHERE BOARD_NUM = #{boardNum}
 	</update>
@@ -90,21 +119,21 @@
 				BOARD_CONTENT,
 				BOARD_WRITER,
 				BOARD_NUM
-		FROM BOARD_TEST
+		FROM BOARD
 		WHERE BOARD_NUM=#{boardNum}
 		AND CATEGORY_NUM=#{categoryNum}
 	</select>
 	
 	<!-- 글삭제 -->
 	<delete id="deleteBoard">
-		DELETE FROM BOARD_TEST
+		DELETE FROM BOARD
 		WHERE CATEGORY_NUM = #{categoryNum}
 		AND BOARD_NUM = #{boardNum}
 	</delete>
 	
 	<!-- 글수정 -->
 	<update id="updateBoard">
-		UPDATE BOARD_TEST
+		UPDATE BOARD
 		SET BOARD_TITLE = #{boardTitle}
 			, BOARD_CONTENT = #{boardContent}
 		WHERE BOARD_NUM = #{boardNum}
