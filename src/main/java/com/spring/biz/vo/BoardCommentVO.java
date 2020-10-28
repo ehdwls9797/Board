@@ -2,21 +2,12 @@ package com.spring.biz.vo;
 
 public class BoardCommentVO {
 
-//    COMMENT_NUM            NUMBER           NULL, 
-//    BOARD_NUM              NUMBER           NULL, 
-//    COMMENT_CONTENT        VARCHAR2(500)    NULL, 
-//    COMMENT_CREATE_DATE    DATE             DEFAULT SYSDATE NULL, 
-//    COMMENT_WRITER         VARCHAR2(50)     NULL, 
-//    COMMENT_PRICE          NUMBER           DEFAULT 1 NULL,
-	
 	private int commentNum;
 	private int boardNum;
 	private String commentContent;
 	private String commentCreateDate;
 	private String commentWriter;
 	
-	
-
 	public String getCommentWriter() {
 		return commentWriter;
 	}

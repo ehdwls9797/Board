@@ -1,8 +1,6 @@
 package com.spring.biz.vo;
 
 public class BoardCategoryVO {
-//	  CATEGORY_NUM NUMBER PRIMARY KEY,
-//    CATEGORY_NAME VARCHAR2(50)
 	
 	private int categoryNum;
 	private String categoryName;

@@ -1,16 +1,8 @@
 package com.spring.biz.vo;
 
 
-public class BoardVO {
+public class BoardVO extends Pagination{
 
-//	    BOARD_NUM NUMBER PRIMARY KEY,
-//	    BOARD_TITLE VARCHAR2(50),
-//	    BOARD_CONTENT VARCHAR2(500),
-//	    BOARD_WRITER VARCHAR2(50),
-//	    BOARD_CREATE_DATE DATE DEFAULT SYSDATE,
-//	    BOARD_READ_CNT NUMBER DEFAULT 0,
-//	    CATEGORY_NUM NUMBER
-	
 	private int boardNum;
 	private String boardTitle;
 	private String boardContent;
@@ -21,28 +13,19 @@ public class BoardVO {
 	private int commentCnt;
 	private int boardGroup;
 	private int boardOrder;
+	private int rowNum;
 	
 	private String searchKeyword;
 	private String searchValue;
 	
-//	/* private int totalCount = ; */
-//	 
-//	private int listCount = 10;
-//	 
-//	private int totalPage = totalCount / listCount;
-
-	
-	
+	public int getRowNum() {
+		return rowNum;
+	}
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
 	public int getBoardGroup() {
 		return boardGroup;
-	}
-	@Override
-	public String toString() {
-		return "BoardVO [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
-				+ ", boardWriter=" + boardWriter + ", createDate=" + createDate + ", readCnt=" + readCnt
-				+ ", categoryNum=" + categoryNum + ", commentCnt=" + commentCnt + ", boardGroup=" + boardGroup
-				+ ", boardOrder=" + boardOrder + ", searchKeyword=" + searchKeyword + ", searchValue=" + searchValue
-				+ "]";
 	}
 	public int getBoardOrder() {
 		return boardOrder;
@@ -116,4 +99,3 @@ public class BoardVO {
 	
 	
 }
-

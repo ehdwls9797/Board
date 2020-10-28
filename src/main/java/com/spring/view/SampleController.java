@@ -6,12 +6,14 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.biz.SampleService;
 import com.spring.biz.vo.BoardCategoryVO;
 import com.spring.biz.vo.BoardCommentVO;
 import com.spring.biz.vo.BoardVO;
+import com.spring.biz.vo.Pagination;
 
 @Controller
 public class SampleController {
@@ -30,14 +32,25 @@ public class SampleController {
 	
 	//게시판 리스트 + 카테고리 명 + 카테고리 번호 가지고가기
 	@RequestMapping(value = "/board.do")
-	public String board(Model model, BoardVO boardVO) {
-		System.out.println("!!!!!!!!!!!");
-		System.out.println(boardVO.getCategoryNum());
-		List<BoardVO> list = sampleService.boardList(boardVO);
+	public String board(Model model, BoardVO boardVO, @RequestParam(required = false, defaultValue = "1") int page
+			, @RequestParam(required = false, defaultValue = "1") int range) 
+	
+	{
+		//게시판 이름
 		BoardCategoryVO vo = sampleService.categoryName(boardVO.getCategoryNum());
-		model.addAttribute("board", list);
 		model.addAttribute("categoryName", vo);
+		//어떤 게시판인지
 		model.addAttribute("category", boardVO.getCategoryNum());
+		//댓글수
+		sampleService.commentCnt(boardVO.getBoardNum());
+		
+		//전체 게시글 개수
+		int listCnt = sampleService.getBoardListCnt(boardVO.getCategoryNum());
+		
+		boardVO.pageInfo(page, range, listCnt);
+		
+		List<BoardVO> list = sampleService.boardList(boardVO);
+		model.addAttribute("board", list);
 		
 		return "sample/board"; 
 	}

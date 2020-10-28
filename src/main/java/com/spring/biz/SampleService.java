@@ -14,7 +14,7 @@ public interface SampleService {
 	//보드게시판에서 카테고리 이름빼오기
 	BoardCategoryVO categoryName (int categoryNum);
 	
-	//게시판 리스트 뽑아오기1
+	//게시판 리스트 뽑아오기
 	List<BoardVO> boardList(BoardVO boardVO);
 	
 	//글쓰기
@@ -42,6 +42,8 @@ public interface SampleService {
 	int commentCnt(int boardNum);
 	
 	int insertBoard1(BoardVO boardVO);
+	
+	int getBoardListCnt(int categoryNum);
 	
 }
 
