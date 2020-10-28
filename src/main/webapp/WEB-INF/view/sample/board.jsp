@@ -46,6 +46,7 @@
 <div align="center">
 <div style="height: 50px;"></div>
 <h1>${categoryName.categoryName }</h1>
+<a href="sample.do">메인</a>
 <div style="height: 50px;"></div>
 <table class="table table-striped">
 	<tr>
@@ -76,7 +77,8 @@
 <div align="center">
 <div style="height: 50px;"></div>
 <h1>${categoryName.categoryName }</h1>
-<div style="height: 50px;"></div>
+<a href="sample.do">메인</a>
+<div style="height: 50px;">${count }</div>
 <table class="table table-striped">
 	<tr>
 		<td>제목</td>
@@ -104,6 +106,7 @@
 <div align="center">
 <div style="height: 50px;"></div>
 <h1>${categoryName.categoryName }</h1>
+<a href="sample.do">메인</a>
 <div style="height: 50px;"></div>
 <table class="table table-striped">
 	<tr>
@@ -127,6 +130,59 @@
 
 </div>
 </c:if>
+
+<script>
+//이전 버튼 이벤트
+function fn_prev(page, range, rangeSize, category) {
+		var page = ((range - 2) * rangeSize) + 1;
+		var range = range - 1;
+		var url = "board.do";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		url = url + "&categoryNum=" + category;
+		location.href = url;
+	}
+
+  //페이지 번호 클릭
+	function fn_pagination(page, range, rangeSize, category) {
+		var url = "board.do";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		url = url + "&rangeSize=" + rangeSize;
+		url = url + "&categoryNum=" + category;
+		location.href = url;	
+	}
+
+	//다음 버튼 이벤트
+	function fn_next(page, range, rangeSize, category) {
+		var page = parseInt((range * rangeSize)) + 1;
+		var range = parseInt(range) + 1;
+		var url = "board.do";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		url = url + "&categoryNum=" + category;
+		location.href = url;
+	}
+
+</script>
+
+	<!-- pagination{s} -->
+	<div id="paginationBox">
+		<ul class="pagination">
+			<c:if test="${boardVO.prev}">
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${boardVO.page}', '${boardVO.range}', '${boardVO.rangeSize}, '${category}'')">Previous</a></li>
+			</c:if>
+
+			<c:forEach begin="${boardVO.startPage}" end="${boardVO.endPage}" var="idx">
+				<li class="page-item <c:out value="${boardVO.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${boardVO.range}', '${boardVO.rangeSize}', '${category}')"> ${idx} </a></li>
+			</c:forEach>
+
+			<c:if test="${boardVO.next}">
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${boardVO.range}', '${boardVO.range}', '${boardVO.rangeSize}, '${category}'')" >Next</a></li>
+			</c:if>
+		</ul>
+	</div>
+	<!-- pagination{e} -->
 
 </body>
 </html>

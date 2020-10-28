@@ -15,6 +15,7 @@
 		<result column="CATEGORY_NUM" 		property="categoryNum"/>
 		<result column="BOARD_GROUP" 		property="boardGroup"/>
 		<result column="BOARD_ORDER" 		property="boardOrder"/>
+		<result column="ROW_NUM" 		property="rowNum"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.biz.vo.BoardCategoryVO" id="category">
@@ -30,6 +31,11 @@
 		<result column="COMMENT_WRITER" 	property="commentWriter"/>
 	</resultMap>
 	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) AS TOTALCOUNT
+		FROM BOARD
+	</select>
+	
 	<!-- 카테고리 이름 리스트 띄우기  -->
 	<select id="categoryList" resultMap="category">
 		SELECT * FROM BOARD_CATEGORY_LIST
@@ -44,25 +50,43 @@
 	
 	<!-- 게시판 리스트 띄우기  -->
 	<select id="boardList" resultMap="board">
-		SELECT BOARD_NUM,
-				BOARD_TITLE,
-				BOARD_WRITER,
-				TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD') AS BOARD_CREATE_DATE,
-				BOARD_READ_CNT,
-				CATEGORY_NUM,
-				BOARD_COMMENT_CNT,
-				BOARD_GROUP
-		FROM BOARD
-		WHERE 1 = 1
-		<if test="searchValue != null and searchValue != ''">
-		AND UPPER(${searchKeyword}) LIKE '%' || UPPER(#{searchValue}) || '%' 
-		</if>
-		AND CATEGORY_NUM = #{categoryNum}
-		ORDER BY BOARD_ORDER, BOARD_NUM
+		SELECT 
+		      ROW_NUM
+		    , BOARD_NUM
+		    , BOARD_TITLE
+		    , BOARD_WRITER
+		    , BOARD_CREATE_DATE
+		    , BOARD_READ_CNT
+		    , CATEGORY_NUM
+		    , BOARD_COMMENT_CNT
+		    , BOARD_GROUP
+		    , BOARD_ORDER
+		FROM 
+			(
+			    SELECT BOARD_NUM,
+			            BOARD_TITLE,
+			            BOARD_WRITER,
+			            TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD') AS BOARD_CREATE_DATE,
+			            BOARD_READ_CNT,
+			            CATEGORY_NUM,
+			            BOARD_COMMENT_CNT,
+			            BOARD_GROUP,
+			            BOARD_ORDER,
+			            ROWNUM AS ROW_NUM
+			    FROM BOARD
+			    WHERE 1 = 1
+			    <if test="searchValue != null and searchValue != ''">
+			    AND UPPER(${searchKeyword}) LIKE '%' || UPPER(#{searchValue}) || '%' 
+			    </if>
+			    AND CATEGORY_NUM = #{categoryNum}
+			    ORDER BY BOARD_ORDER, BOARD_NUM
+			)
+		WHERE ROW_NUM BETWEEN #{startIndex} AND #{endIndex}
 	</select>
 	
-	<select id="totalCount" resultType="int">
-		SELECT COUNT(*) AS TOTALCOUNT FROM BOARD
+	<select id="getBoardListCnt" resultType="int">
+		SELECT COUNT(*) AS listCnt FROM BOARD
+		WHERE CATEGORY_NUM = #{categoryNum}
 	</select>
 	
 	<!-- 게시판 글쓰기 -->
@@ -165,7 +189,7 @@
 	
 	<!-- 댓글 개수 증가 -->
 	<update id="commentCnt">
-		UPDATE BOARD_TEST
+		UPDATE BOARD
 		SET BOARD_COMMENT_CNT = BOARD_COMMENT_CNT + 1
 		WHERE BOARD_NUM = #{boardNum}
 	</update>
