@@ -127,7 +127,7 @@
 	</c:forEach>
 </table>
 <button type="button" class="btn btn-success" id="board3">글쓰기</button>
-
+<!--  CSS -->
 </div>
 </c:if>
 
